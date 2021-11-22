@@ -35,12 +35,10 @@ type randomReponse struct {
 	} `json:"query"`
 }
 
-const baseURL = "https://de.wikipedia.org"
-
 var noDescription = errors.New("no description found")
 var noPageInfo = errors.New("no page info found")
 
-func request(params map[string]string) ([]byte, error) {
+func request(baseURL string, params map[string]string) ([]byte, error) {
 	builder := strings.Builder{}
 	builder.WriteString(baseURL)
 	builder.WriteString("/w/api.php?")
@@ -79,7 +77,7 @@ func responseToPageInfo(response infoResponse) (PageInfo, error) {
 	return PageInfo{}, noPageInfo
 }
 
-func queryInfo(id int64) (PageInfo, error) {
+func queryInfo(baseUrl string, id int64) (PageInfo, error) {
 	params := map[string]string {
 		"action": "query",
 		"pageids": strconv.FormatInt(id, 10),
@@ -87,7 +85,7 @@ func queryInfo(id int64) (PageInfo, error) {
 		"inprop": "url",
 	}
 
-	content, err := request(params)
+	content, err := request(baseUrl, params)
 	if err != nil {
 		return PageInfo{}, err
 	}
@@ -101,14 +99,14 @@ func queryInfo(id int64) (PageInfo, error) {
 	return responseToPageInfo(response)
 }
 
-func queryRandom() (int64, error) {
+func queryRandom(baseUrl string) (int64, error) {
 	params := map[string]string {
 		"action": "query",
 		"list": "random",
 		"rnnamespace": "0",
 	}
 
-	content, err := request(params)
+	content, err := request(baseUrl, params)
 	if err != nil {
 		return 0, err
 	}

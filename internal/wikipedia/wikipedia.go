@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	. "wikitil/internal/config"
 )
 
 const retries = 5
@@ -12,15 +13,15 @@ var illegalDescriptionParts = []string{
 	"Begriffsklärungsseite",
 }
 
-func Get() (PageInfo, error){
+func Get(config Config) (PageInfo, error){
 	retryLoop:
 	for i := 0; i < retries; i++ {
-		id, err := queryRandom()
+		id, err := queryRandom(config.BaseUrl)
 		if err != nil {
 			return PageInfo{}, err
 		}
 
-		info, err := queryInfo(id)
+		info, err := queryInfo(config.BaseUrl, id)
 
 		if err != nil {
 			fmt.Println(err)

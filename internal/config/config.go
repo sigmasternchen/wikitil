@@ -8,6 +8,7 @@ import (
 type Config struct {
 	ConsumerKey string `json:"consumer_key"`
 	ConsumerSecret string `json:"consumer_secret"`
+	BaseUrl string `json:"base_url"`
 }
 
 type AccessConfig struct {

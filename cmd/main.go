@@ -49,7 +49,7 @@ func main() {
 	for range time.Tick(time.Hour * 24) {
 		log.Println("tick")
 
-		page, err := wikipedia.Get()
+		page, err := wikipedia.Get(config)
 		if err != nil {
 			log.Println(err)
 			continue
