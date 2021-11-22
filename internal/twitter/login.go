@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/dghubble/oauth1"
 	twauth "github.com/dghubble/oauth1/twitter"
-	. "randomarticle/internal/config"
+	. "wikitil/internal/config"
 )
 
 const outOfBand = "oob"

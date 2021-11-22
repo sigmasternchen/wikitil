@@ -2,7 +2,7 @@ package twitter
 
 import (
 	"github.com/dghubble/go-twitter/twitter"
-	appConfig "randomarticle/internal/config"
+	appConfig "wikitil/internal/config"
 )
 import "github.com/dghubble/oauth1"
 

@@ -2,10 +2,10 @@ package main
 
 import (
 	"log"
-	. "randomarticle/internal/config"
-	"randomarticle/internal/twitter"
-	"randomarticle/internal/wikipedia"
 	"time"
+	. "wikitil/internal/config"
+	"wikitil/internal/twitter"
+	"wikitil/internal/wikipedia"
 )
 
 const configPath = "config.json"
@@ -46,7 +46,7 @@ func main() {
 	access := getAccessConfig(config)
 	twitter.Init(config, access)
 
-	for range time.Tick(time.Minute * 1) {
+	for range time.Tick(time.Hour * 24) {
 		log.Println("tick")
 
 		page, err := wikipedia.Get()

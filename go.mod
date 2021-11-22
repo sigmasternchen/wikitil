@@ -1,4 +1,4 @@
-module randomarticle
+module wikitil
 
 go 1.16
 
