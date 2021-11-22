@@ -11,7 +11,9 @@ const retries = 5
 
 var illegalDescriptionParts = []string{
 	"disambiguation page",
+	"Wikimedia list article",
 	"Begriffsklärungsseite",
+	"Wikimedia-Liste",
 }
 
 func Get(config Config) (PageInfo, error){
