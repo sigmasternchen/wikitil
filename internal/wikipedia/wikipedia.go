@@ -10,6 +10,7 @@ import (
 const retries = 5
 
 var illegalDescriptionParts = []string{
+	"disambiguation page",
 	"Begriffsklärungsseite",
 }
 
