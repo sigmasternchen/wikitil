@@ -46,19 +46,25 @@ func main() {
 	access := getAccessConfig(config)
 	twitter.Init(config, access)
 
+	postArticle(config)
+
 	for range time.Tick(time.Hour * 24) {
 		log.Println("tick")
 
-		page, err := wikipedia.Get(config)
-		if err != nil {
-			log.Println(err)
-			continue
-		}
+		postArticle(config)
+	}
+}
 
-		err = twitter.Tweet(wikipedia.Format(page))
-		if err != nil {
-			log.Println(err)
-			continue
-		}
+func postArticle(config Config) {
+	page, err := wikipedia.Get(config)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	err = twitter.Tweet(wikipedia.Format(page))
+	if err != nil {
+		log.Println(err)
+		return
 	}
 }
